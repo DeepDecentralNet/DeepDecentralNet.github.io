@@ -100,5 +100,6 @@ else
 		var payload =  json.result.payload;
 		var test = Base64.decode(payload);
 		
-		post();
+		var a = post();
+		output.innerHTML = a;
 }
