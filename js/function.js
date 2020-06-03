@@ -2,27 +2,35 @@ var output = document.querySelector('.output');
 var button = document.querySelector('.button');
 
 function h1(text,align) {
-  output.innerHTML = '<h1 align="'+ align +'">' + text + '</h1>';
+  output.innerHTML += '<h1 align="'+ align +'">' + text + '</h1>';
 }
 
 function p(text,align) {
-  output.innerHTML = '<p align="'+ align +'">' + text + '</p>';
+  output.innerHTML += '<p align="'+ align +'">' + text + '</p>';
 }
 
 function btn(text,link,align,img,w,h) {
-	if ($img != '') 
+	if (img != '') 
 		{output2 = "<img src='" + img + "' style='vertical-align: middle' width='" + w + "' height='" + h + "'>";}
 	else
 		{output2 = '';}
-	output.innerHTML = '<a href="' + link + '" target="_blank"> <p align="' + align + '"><button>' + output2 + text + '</button></p></a>';
+	output.innerHTML += '<a href="' + link + '" target="_blank"> <p align="' + align + '"><button>' + output2 + text + '</button></p></a>';
 }
 
 function img(link,align,width,height)
 {
-	output.innerHTML = '<p align="' + align + '"><img src="' + link + '" width="' + w + '" height="' + h + '"></p>';
+	output.innerHTML += '<p align="' + align + '"><img src="' + link + '" width="' + w + '" height="' + h + '"></p>';
 }
 
-button.onclick = function() { // h1('Добро пожаловать','center'); p('В самый не заблокированный интернет','left');
+/*
+h1('Добро пожаловать','center');
+p('В самый не заблокированный интернет','left');
+btn('text','','center','',500,100);
+p('Тут тоже текст','right');
+*/
+
+
+button.onclick = function() {
 	var input = document.querySelector('#input').value; // private.ddn/fcfde6b790f8e
 
 	var key = input.split('/')[1];
@@ -37,7 +45,7 @@ if (site=='')
 	{
 		hash = '0xf7a547eb9569f548911568c29812cf392fc2823ce7492c5ab10e605e61879d87';
 	}
-else if (site.split('.')[1] == 'ddn') 
+else if (site.split('.')[1] == 'ddn')
 	{
 		url = 'https://raw.githubusercontent.com/Sokol491/Deep-Decentral-Net/master/nodelist.json';
 		var req = null;
@@ -62,7 +70,7 @@ else if (site.split('.')[1] == 'ddn')
 				}
 			}
 			
-		if (hash == '')
+		if (hash == '') or (hash == null)
 			{
 				hash = '0x077bcd7807935ccab5ec850abaf383496016f12d707f396d7c2be610fa034797'; //Error. The site address was not found.
 			}
@@ -90,5 +98,7 @@ else
 		req.send(null);
 		var json = JSON.parse(JSON.stringify(JSON.parse(req.responseText)));
 		var payload =  json.result.payload;
-		output.innerHTML = Base64.decode(Base64.decode(payload));
+		var test = Base64.decode(payload);
+		
+		post();
 }
