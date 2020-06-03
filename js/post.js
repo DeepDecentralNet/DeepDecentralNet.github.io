@@ -22,7 +22,7 @@ function getXmlHttp() {
     xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера
       if (xmlhttp.readyState == 4) { // Ответ пришёл
         if(xmlhttp.status == 200) { // Сервер вернул код 200 (что хорошо)
-          document.getElementById("post").innerHTML = xmlhttp.responseText; // Выводим ответ сервера
+          return xmlhttp.responseText; // Выводим ответ сервера
         }
       }
     };
